@@ -7,9 +7,9 @@ FactoryGirl.define do
     promoted false
   end
 
-  factor :user do
+  factory :user do
     name "User"
-    email "user@user.com"
+    sequence (:email) {|num| "user##{num}@user.com"} #email must be unique for devise
     password "password"
     password_confirmation "password"
     admin false

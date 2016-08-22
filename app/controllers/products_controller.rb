@@ -1,4 +1,19 @@
 class ProductsController < ApplicationController
+  include CurrentCart
+  before_action :find_cart, only: [:line_item_create]
+  before_action :authenticate_user!, except: :show
+  before_action :check_for_admin!, except: [:show, :line_item_create]
+
+  def line_item_create  #non-restful method. typically
+    product = Product.find(params[:product_id])
+    @line_item = @cart.add_product(product.id) #before action :find_cart, need to associate the line item creation with a specific cart
+    if @line_item.save
+      redirect_to @cart
+    else
+      redirect_to @product
+    end
+  end
+
   def new
     @product = Product.new
   end
@@ -44,5 +59,11 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :stock, :price, :description, :promoted)
+  end
+
+  def check_for_admin!
+    unless current_user.admin?
+      redirect_to root_path
+    end
   end
 end

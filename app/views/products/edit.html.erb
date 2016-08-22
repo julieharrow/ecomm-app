@@ -1,2 +1,20 @@
-<h1>Products#edit</h1>
-<p>Find me in app/views/products/edit.html.erb</p>
+<h1>Edit All <%= @product.name.pluralize %></h1>
+
+<%= form_for @product do |f| %>
+
+  <%= f.text_field :name, class: "form-control", placeholder: "Product Name", autofocuts: true %><br />
+
+  <%= f.text_field :description, class: "form-control", placeholder: "Product Description" %><br />
+
+  <div class = "form-horizontal">
+    <%= f.label "Inventory", class: "col-sm-2" %>
+    <%= f.number_field :stock, class: "form-control", placeholder: 10, class: "col-sm-2" %>
+  </div>
+  <br />
+  <br />
+  <div class = "form-horizontal">
+    <%= f.label :price, class: "col-sm-2" %>
+    <%= f.number_field :price, class: "form-control", placeholder: 10.00, class: "col-sm-2", step: 0.01 %> <br />
+  </div><br />
+  <%= f.submit %>
+<% end %>

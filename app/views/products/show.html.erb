@@ -1,2 +1,6 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+
+<h1><%= @product.name %></h1>
+<h3><%= @product.price %></h3>
+
+<%=button_to 'Add to Cart', line_items_path(product_id: @product), class: "btn btn-success btn-sm"%>
+<!-- # button_to ALWAYS represents a "post" (unless specified otherwise via method: :otherHHTPverb) and is preferable over a link_to (which is always a get) when creating a button that creates an instance -->

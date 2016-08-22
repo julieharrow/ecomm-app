@@ -1,2 +1,26 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<h1>New Product</h1>
+
+<%= form_for @product do |f| %>
+
+  <%= f.text_field :name, class: "form-control", placeholder: "Product Name", autofocus: true %><br />
+  <%= f.text_field :description, class: "form-control", placeholder: "Product Description" %><br />
+  <div class="form-horizontal">
+    <%= f.label "Inventory", class: "col-sm-2" %>
+    <%= f.number_field :stock, class: "form-control", placeholder:10, class: "col-sm-2" %>
+  </div>
+  <br />
+  <br />
+  <div class = "form-horizontal">
+    <%= f.label :price, class: "col-sm-2" %>
+    <%= f.number_field :price, class: "form-control", placeholder: 10.00, class: "col-sm-2", step: 0.01 %><br />
+  </div>
+  <%= f.submit %>
+<% end %>
+
+
+<!-- This is an example of the code behind 'form_for'...
+<#form accept-charset="UTF-8" action="/products" method="post">
+#  <label for="name">Name</label>:
+#  <input id="name" name="product[name]" type="text" />
+#  <input name="commit" type="submit" value="Create" />
+<#/form> -->

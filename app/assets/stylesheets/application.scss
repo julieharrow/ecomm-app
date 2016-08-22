@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+@import "bootstrap-sprockets";
+
+.nav-cart {
+  height:40px;
+}
